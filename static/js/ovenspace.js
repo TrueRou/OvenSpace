@@ -44,7 +44,10 @@ const inputDeviceModal = $("#input-device-modal");
 const totalUserCountSpan = $("#total-user-count-span");
 const videoUserCountSpan = $("#video-user-count-span");
 
-if (!navigator.mediaDevices.getDisplayMedia) {
+if (
+  navigator.mediaDevices == undefined ||
+  !navigator.mediaDevices.getDisplayMedia
+) {
   shareDisplayButton.addClass("d-none");
 }
 
