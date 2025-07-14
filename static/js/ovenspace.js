@@ -5,7 +5,7 @@ let shareMode = null;
 let liveKitInputMap = {};
 let tryToStreaming = false;
 
-const SEAT_COUNT = 4;
+const SEAT_COUNT = 3;
 
 _.templateSettings = {
   interpolate: /\{1\{(.+?)\}\}/g
@@ -342,6 +342,33 @@ function getDisplayConstraints() {
   return newConstraint;
 }
 
+function setupMainStreamButtons() {
+  $(document).on('click', '.set-as-main-stream-button', function(e) {
+    console.log(">>> set as main stream button clicked");
+    e.stopPropagation();
+    const seatContainer = $(this).closest('.col-6');
+    
+    // 如果当前已经是主流，则恢复正常布局
+    if (seatContainer.hasClass('main-stream')) {
+      resetStreamLayout();
+    } else {
+      // 移除其他可能的主流设置
+      resetStreamLayout();
+      
+      // 设置当前为主流
+      seatContainer.addClass('main-stream');
+      
+      // 设置其他seat为普通流
+      $("#seat-area").find('.col-6').not(seatContainer).addClass('normal-stream');
+    }
+  });
+}
+
+// 重置所有流的布局
+function resetStreamLayout() {
+  $("#seat-area").find('.col-6').removeClass('main-stream normal-stream');
+}
+
 function renderSeats() {
   let seatRendered = 0;
 
@@ -353,6 +380,7 @@ function renderSeats() {
         streamName: streamName,
       })
     );
+    
 
     seat.find(".join-button ").data("stream-name", streamName);
 
@@ -403,7 +431,7 @@ function createPlayer(streamName) {
   const playerOption = {
     // image: OME_THUMBNAIL_HOST + '/' + APP_NAME + '/' + streamName + '/thumb.png',
     autoFallback: false,
-    autoStart: true,
+    autoStart: false,
     sources: [
       {
         label: "WebRTC",
@@ -579,3 +607,5 @@ renderSeats();
 checkStream();
 
 startStreamCheckTimer();
+
+setupMainStreamButtons();

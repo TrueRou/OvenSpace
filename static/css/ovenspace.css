@@ -230,3 +230,18 @@ h6 {
 .social-buttons .fab:before {
   font-size: 1.2rem;
 }
+
+/* 主流视频样式 */
+.main-stream {
+  width: 100% !important;
+  max-width: 100% !important;
+  flex: 0 0 100% !important;
+  transition: all 0.3s ease-in-out;
+  order: 0;
+}
+
+/* 非主流视频的样式 */
+.normal-stream {
+  order: 1;
+  transition: all 0.3s ease-in-out;
+}
