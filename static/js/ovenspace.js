@@ -357,6 +357,7 @@ function setupMainStreamButtons() {
       
       // 设置当前为主流
       seatContainer.addClass('main-stream');
+      seatContainer.find('.set-as-main-stream-button').hide();
       
       // 设置其他seat为普通流
       $("#seat-area").find('.col-6').not(seatContainer).addClass('normal-stream');
@@ -367,6 +368,7 @@ function setupMainStreamButtons() {
 // 重置所有流的布局
 function resetStreamLayout() {
   $("#seat-area").find('.col-6').removeClass('main-stream normal-stream');
+  $(".set-as-main-stream-button").show();
 }
 
 function renderSeats() {
@@ -407,6 +409,14 @@ function renderSeats() {
     seatArea.append(seat);
 
     seatRendered++;
+  }
+  
+  // 默认将第一个视频流设置为主流
+  const firstSeatContainer = $("#seat-area").find('.col-6').first();
+  if (firstSeatContainer.length) {
+    firstSeatContainer.addClass('main-stream');
+    firstSeatContainer.find('.set-as-main-stream-button').hide();
+    $("#seat-area").find('.col-6').not(firstSeatContainer).addClass('normal-stream');
   }
 }
 
