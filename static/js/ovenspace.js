@@ -7,6 +7,10 @@ let tryToStreaming = false;
 
 const SEAT_COUNT = 4;
 
+_.templateSettings = {
+  interpolate: /\{1\{(.+?)\}\}/g
+};
+
 const seatArea = $("#seat-area");
 const seatTemplate = _.template($("#seat-template").html());
 

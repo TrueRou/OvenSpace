@@ -379,18 +379,18 @@
 
     <template id="seat-template">
       <div class="col-6 col-md-6 col-lg-6">
-        <div id="seat-<%= streamName %>" class="seat mb-4 ratio ratio-16x9">
+        <div id="seat-{1{ streamName }}" class="seat mb-4 ratio ratio-16x9">
           <div
             class="join-area d-flex justify-content-center align-items-center w-100 h-100"
           >
             <button class="join-button btn btn-warning">Participate</button>
           </div>
           <div class="player-area d-none">
-            <div id="player-<%= streamName %>"></div>
+            <div id="player-{1{ streamName }}"></div>
           </div>
           <div class="local-player-area d-none">
             <video
-              id="local-player-<%= streamName %>"
+              id="local-player-{1{ streamName }}"
               class="local-player"
               muted
               autoplay
