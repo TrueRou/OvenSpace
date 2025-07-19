@@ -619,3 +619,16 @@ checkStream();
 startStreamCheckTimer();
 
 setupMainStreamButtons();
+
+const domain = 'meet.turou.fun';
+const options = {
+    roomName: 'ChatRoom',
+    height: 700,
+    parentNode: document.querySelector('#meet'),
+    configOverwrite: {
+      startWithAudioMuted: true,
+      startWithVideoMuted: true,
+    },
+    lang: 'zhCN',
+};
+const api = new JitsiMeetExternalAPI(domain, options);
